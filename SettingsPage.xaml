@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TriviaGame.Resources.SettingsPage"
+             Title="SettingsPage">
+    <VerticalStackLayout>
+        <StackLayout Padding="30">
+            <Label Text="Theme"/>
+            <Switch x:Name="ThemeSwitch" 
+                    IsToggled="{Binding IsDarkMode}"/>
+            <Label Text="Timer Duration (seconds)"/>
+            <Slider x:Name="TimerSlider" 
+                    Minimum="10" 
+                    Maximum="60" 
+                    Value="{Binding TimerDuration}"
+                    WidthRequest="150"/>
+            <Label Text="Font Size" />
+            <Slider x:Name="FontSizeSlider"
+                    Minimum="12" Maximum="30" 
+                    Value="{Binding FontSize}"
+                    VerticalOptions="Center" />
+            <Button Text="Save Settings"
+                    HorizontalOptions="Center" 
+                    Clicked="OnSaveSettingsClicked"/>
+        </StackLayout>
+    </VerticalStackLayout>
+</ContentPage>

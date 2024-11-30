@@ -28,6 +28,11 @@ namespace TriviaGame
 
         private async void ButtonStart_Clicked(object sender, EventArgs e)
         {
+            
+        }
+
+        private async void ButtonSettings_Clicked(object sender, EventArgs e)
+        {
             await Navigation.PushAsync(new SettingsPage());
         }
     }
