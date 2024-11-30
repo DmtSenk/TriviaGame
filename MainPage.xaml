@@ -23,6 +23,8 @@
                      Spacing="10" 
                      Margin="0,0,0,60"/>
         <Button Text="Start"
-                WidthRequest="100"/>
+                WidthRequest="100"
+                Clicked="ButtonStart_Clicked"
+                Margin="0,0,0,10"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -1,4 +1,6 @@
-﻿namespace TriviaGame
+﻿using TriviaGame.Resources;
+
+namespace TriviaGame
 {
     public partial class MainPage : ContentPage
     {
@@ -22,6 +24,11 @@
             {
                 PlayersNames.Children.Add(new Entry{ Placeholder = "Input player name"});
             }
+        }
+
+        private async void ButtonStart_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
     }
 }
