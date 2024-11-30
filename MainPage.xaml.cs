@@ -2,24 +2,26 @@
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
 
         public MainPage()
         {
             InitializeComponent();
+            UpdatePlayerEntries(1);
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
+        private void AmountOfPLayersSlider_ValueChanged(object sender, ValueChangedEventArgs e)
         {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            int playersCount = (int)Math.Round(e.NewValue);
+            AmOfPlayers.Text = playersCount + " Player" + (playersCount > 1 ? "s" : "");
+            UpdatePlayerEntries(playersCount);
+        }
+        private void UpdatePlayerEntries(int playersCount)
+        {
+            PlayersNames.Children.Clear();
+            for (int i = 0; i < playersCount; i++)
+            {
+                PlayersNames.Children.Add(new Entry{ Placeholder = "Input player name"});
+            }
         }
     }
-
 }
