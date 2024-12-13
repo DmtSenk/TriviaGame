@@ -18,7 +18,8 @@
             <Slider x:Name="FontSizeSlider"
                     Minimum="12" Maximum="30" 
                     Value="{Binding FontSize}"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center"
+                    WidthRequest="150"/>
             <Button Text="Save Settings"
                     HorizontalOptions="Center" 
                     Clicked="OnSaveSettingsClicked"/>

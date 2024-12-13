@@ -55,6 +55,9 @@ public partial class SettingsPage : ContentPage
         Preferences.Set("TimerDuration", TimerDuration);
         Preferences.Set("FontSize", FontSize);
 
-       /* await Navigation.PushAsync(new GamePage());*/
+        Application.Current.UserAppTheme = IsDarkMode ? AppTheme.Dark : AppTheme.Light;
+        Application.Current.Resources["DefaultFontSize"] = FontSize;
+
+        await Navigation.PopAsync();
     }
 }
