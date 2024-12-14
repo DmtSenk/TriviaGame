@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace TriviaGame.Resources;
 
-public partial class SettingsPage : ContentPage
+public partial class SettingsPage : ContentPage, INotifyPropertyChanged
 {
     private bool isDarkMode;
     private double timerDuration;
@@ -100,5 +100,8 @@ public partial class SettingsPage : ContentPage
 
         await Navigation.PopAsync();
     }
-
+    protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 }

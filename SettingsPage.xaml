@@ -8,15 +8,18 @@
             <Label Text="Theme"/>
             <Switch x:Name="ThemeSwitch" 
                     IsToggled="{Binding IsDarkMode}"/>
-            <Label Text="Timer Duration (seconds)"/>
             
+            <Label Text="Timer Duration (seconds)"/>
             <Slider x:Name="TimerSlider" 
                     Minimum="30" 
                     Maximum="120" 
                     Value="{Binding TimerDuration}"
                     WidthRequest="150"/>
-            <Label Text="{Binding TimerDuration}"
-                   HorizontalOptions="Center"/>
+            <Label HorizontalOptions="Center">
+                <Label.Text>
+                    <Binding Path="TimerDuration" StringFormat="{}{0:F0} seconds" />
+                </Label.Text>
+            </Label>
             
             <Label Text="Font Size" />
             <Slider x:Name="FontSizeSlider"
@@ -24,6 +27,13 @@
                     Value="{Binding FontSize}"
                     VerticalOptions="Center"
                     WidthRequest="150"/>
+            <Label HorizontalOptions="Center"
+                   Margin="0,0,0,5">
+                <Label.Text>
+                    <Binding Path="FontSize" StringFormat="{}{0:F0}"/>
+                </Label.Text>
+            </Label>
+
             <Button Text="Save Settings"
                     HorizontalOptions="Center" 
                     Clicked="OnSaveSettingsClicked"/>

@@ -5,6 +5,23 @@
              x:Class="TriviaGame.App">
     <Application.Resources>
         <ResourceDictionary>
+            <OnPlatform x:Key="DefaultFontSize" x:TypeArguments="x:Double">
+                <On Platform="Android" Value="16"/>
+                <On Platform="WinUI" Value="16"/>
+            </OnPlatform>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
+
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
+
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource VibrantOrange}, Dark={StaticResource GoldenAmber}}"/>
+            </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
