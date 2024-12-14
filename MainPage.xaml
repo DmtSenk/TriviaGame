@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaGame.MainPage"
              Title="Trivia Game">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Settings"
+                     IconImageSource="{AppThemeBinding Light=settingslight.png, Dark=settingsdark.png}"
+                     Order="Primary"
+                     Priority="0"
+                     Clicked="ButtonSettings_Clicked"/>
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout>
         <Label Text="Number of players" 
                HorizontalOptions="Center"
@@ -25,10 +32,6 @@
         <Button Text="Start"
                 WidthRequest="100"
                 Clicked="ButtonStart_Clicked"
-                Margin="0,0,0,10"/>
-        <Button Text="Settings"
-                WidthRequest="100"
-                Clicked="ButtonSettings_Clicked"
                 Margin="0,0,0,10"/>
     </VerticalStackLayout>
 </ContentPage>
