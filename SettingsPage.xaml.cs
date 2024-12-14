@@ -1,33 +1,73 @@
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
+
 namespace TriviaGame.Resources;
 
 public partial class SettingsPage : ContentPage
 {
+    private bool isDarkMode;
+    private double timerDuration;
+    private double fontSize;
+    public event PropertyChangedEventHandler PropertyChanged;
+
     public bool IsDarkMode
     {
-        get => Preferences.Get("IsDarkMode", false);
+        get
+        {
+            return Preferences.Get("IsDarkMode", false);
+        }
         set
         {
             Preferences.Set("IsDarkMode", value);
             SetTheme(value);
+            OnPropertyChanged();
         }
     }
 
     public double TimerDuration
     {
-        get => Preferences.Get("TimerDuration", (double)30);
-        set => Preferences.Set("TimerDuration", value);
+        get
+        {
+            return timerDuration;
+        }
+        set
+        {
+            if (timerDuration != value)
+            {
+                timerDuration = value;
+                Preferences.Set("TimerDuration", value);
+                OnPropertyChanged();
+            }
+        }
     }
 
     public double FontSize
     {
-        get => Preferences.Get("FontSize", (double)16);
-        set => Preferences.Set("FontSize", value);
+        get
+        {
+            return fontSize;
+        }
+        set
+        {
+            if (fontSize != value)
+            {
+                fontSize = value;
+                Preferences.Set("FontSize", value);
+                OnPropertyChanged();
+            }
+        }
     }
 
     public SettingsPage()
     {
         InitializeComponent();
+        
+        isDarkMode = Preferences.Get("IsDarkMode", false);
+        timerDuration = Preferences.Get("TimerDuration", 30.0);
+        fontSize = Preferences.Get("FontSize", 16.0);
+        
         BindingContext = this;
+        
         SetTheme(IsDarkMode);
         ApplyFontSize(FontSize);
     }
@@ -60,4 +100,5 @@ public partial class SettingsPage : ContentPage
 
         await Navigation.PopAsync();
     }
+
 }

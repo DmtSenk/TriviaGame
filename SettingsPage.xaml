@@ -9,11 +9,15 @@
             <Switch x:Name="ThemeSwitch" 
                     IsToggled="{Binding IsDarkMode}"/>
             <Label Text="Timer Duration (seconds)"/>
+            
             <Slider x:Name="TimerSlider" 
-                    Minimum="10" 
-                    Maximum="60" 
+                    Minimum="30" 
+                    Maximum="120" 
                     Value="{Binding TimerDuration}"
                     WidthRequest="150"/>
+            <Label Text="{Binding TimerDuration}"
+                   HorizontalOptions="Center"/>
+            
             <Label Text="Font Size" />
             <Slider x:Name="FontSizeSlider"
                     Minimum="12" Maximum="30" 
