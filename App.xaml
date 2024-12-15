@@ -11,16 +11,25 @@
             </OnPlatform>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
-
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DeepNavy}, Dark={StaticResource White}}"/>
             </Style>
             <Style TargetType="Entry">
                 <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
-
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource DeepNavy}, Dark={StaticResource White}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBlue}, Dark={StaticResource DarkBlue}}"/>
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource VibrantOrange}, Dark={StaticResource GoldenAmber}}"/>
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource VibrantOrange}, Dark={StaticResource BrightOrange}}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
+            </Style>
+            <Style TargetType="Slider">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SoftGray}, Dark={StaticResource DarkSlateGray}}"/>
+                <Setter Property="ThumbColor" Value="{AppThemeBinding Light={StaticResource VibrantOrange}, Dark={StaticResource BrightOrange}}"/>
+            </Style>
+            <Style TargetType="Switch">
+                <Setter Property="OnColor"  Value="{AppThemeBinding Light={StaticResource BrightOrange}, Dark={StaticResource DarkSlateGray}}"/>
             </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

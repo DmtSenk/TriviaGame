@@ -6,9 +6,9 @@
 
     <!-- Note: For Android please see also Platforms\Android\Resources\values\colors.xml -->
 
-    <Color x:Key="Primary">#512BD4</Color>
+    <Color x:Key="Primary">#1A237E</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>
-    <Color x:Key="PrimaryDarkText">#242424</Color>
+    <Color x:Key="PrimaryDarkText">#FFFFFF</Color>
     <Color x:Key="Secondary">#DFD8F7</Color>
     <Color x:Key="SecondaryDarkText">#9880e5</Color>
     <Color x:Key="Tertiary">#2B0B98</Color>
@@ -19,30 +19,32 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
     <Color x:Key="DeepNavy">#1A237E</Color>
-    <Color x:Key="SlateGray">#</Color>
-    <Color x:Key="Light Blue">#</Color>
 
-    <Color x:Key="PureWhite">#FFFFFF</Color>
+
+
+    <Color x:Key="SlateGray">#607D8B</Color>
+    <Color x:Key="LightBlue">#E3F2FD</Color>
     <Color x:Key="MediumGray">#9E9E9E</Color>
     <Color x:Key="VibrantOrange">#FF6F00</Color>
+    <Color x:Key="SoftGray">#B0BEC5</Color>
     <Color x:Key="LightSilver">#CFD8DC</Color>
     <Color x:Key="FieryRed">#D32F2F</Color>
     <Color x:Key="EmeraldGreen">#388E3C</Color>
     <Color x:Key="GoldenYellow">#FFEB3B</Color>
-    <Color x:Key="NearBlack">#121212</Color>
+
+
+    <Color x:Key="CharcoalBlack">#121212</Color>
     <Color x:Key="PureWhiteDark">#FFFFFF</Color>
-    <Color x:Key="LightGrayDark">#B3B3B3</Color>
-    <Color x:Key="DarkGray">#1E1E1E</Color>
+    <Color x:Key="LightGrayDark">#B0BEC5</Color>
+    <Color x:Key="DarkBlue">#263238</Color>
     <Color x:Key="PureWhiteDark2">#FFFFFF</Color>
-    <Color x:Key="MediumGrayDark">#B3B3B3</Color>
-    <Color x:Key="SoftPurple">#BB86FC</Color>
-    <Color x:Key="PureBlack">#000000</Color>
-    <Color x:Key="DarkSlateGray">#424242</Color>
-    <Color x:Key="SoftPurpleDark">#BB86FC</Color>
-    <Color x:Key="DarkSilver">#3E3E3E</Color>
-    <Color x:Key="BrightRed">#CF6679</Color>
-    <Color x:Key="LightGreen">#00E676</Color>
-    <Color x:Key="GoldenAmber">#FFD600</Color>
+    <Color x:Key="MediumGrayDark">#90A4AE</Color>
+    <Color x:Key="BrightOrange">#FF9800</Color>
+    <Color x:Key="DarkSlateGray">#37474F</Color>
+    <Color x:Key="BrightRed">#F44336</Color>
+    <Color x:Key="LightGreen">#81C784</Color>
+    <Color x:Key="BrightYellow">#FFEB3B</Color>
+    
 
     <Color x:Key="Gray100">#E1E1E1</Color>
     <Color x:Key="Gray200">#C8C8C8</Color>
@@ -67,4 +69,7 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    
 </ResourceDictionary>
+    
