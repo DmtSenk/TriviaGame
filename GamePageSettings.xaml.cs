@@ -19,8 +19,7 @@ public partial class GamePageSettings : ContentPage
 
         
         await DisplayAlert("Game Started",
-            $"Category: {category}\nDifficulty: {difficulty}\nGame Mode: {gameMode}",
-            "OK");
+            $"Category: {category}\nDifficulty: {difficulty}\nGame Mode: {gameMode}","OK");
 
         
         // await Navigation.PushAsync(new GamePage(category, difficulty, gameMode));
