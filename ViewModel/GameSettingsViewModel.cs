@@ -81,7 +81,7 @@ namespace TriviaGame.ViewModel
                 "Survival"
             };
 
-            // Optionally, set default selections
+            
             SelectedCategory = Categories.FirstOrDefault("General Knowledge");
             SelectedDifficulty = Difficulties.FirstOrDefault("Easy");
             SelectedGameMode = GameModes.FirstOrDefault("Classic");
