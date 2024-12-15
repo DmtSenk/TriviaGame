@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TriviaGame.GamePageSettings"
+             Title="GamePageSettings">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <Label Text="Select Category"
+                   HorizontalOptions="Start" />
+
+            <Picker x:Name="CategoryPicker"
+                    Title="Choose a Category"
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"/>
+
+            <Label Text="Select Difficulty"
+                   HorizontalOptions="Start" />
+
+            <Picker x:Name="DifficultyPicker"
+                    Title="Choose Difficulty"
+                    ItemsSource="{Binding Difficulties}"
+                    SelectedItem="{Binding SelectedDifficulty}"/>
+
+            <Label Text="Select Game Mode"
+                   HorizontalOptions="Start" />
+
+            <Picker x:Name="GameModePicker"
+                    Title="Choose Game Mode"
+                    ItemsSource="{Binding GameModes}"
+                    SelectedItem="{Binding SelectedGameMode}"/>
+
+            <Button Text="Start Game"
+                    Clicked="OnStartGameClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
