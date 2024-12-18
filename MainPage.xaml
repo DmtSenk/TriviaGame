@@ -11,18 +11,15 @@
                      Clicked="ButtonSettings_Clicked"/>
         <ToolbarItem Text="Info"
                      Order="Primary"
-                     Priority="0"
-                     />
+                     Priority="0"/>
         <ToolbarItem Text="Dashboard"
                      Order="Primary"
-                     Priority="0"
-                     />
+                     Priority="0"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Number of players" 
-               HorizontalOptions="Center"
-               />
+               HorizontalOptions="Center"/>
             <Slider x:Name="AmountOfPLayersSlider"
                 Minimum="1"
                 Maximum="4"

@@ -6,7 +6,7 @@
 
     <VerticalStackLayout Padding="30" Spacing="20">
         <Label Text="Select Category"
-                   HorizontalOptions="Start" />
+                   HorizontalOptions="Start"/>
         <Picker x:Name="CategoryPicker"
                     Title="Choose a Category"
                     ItemsSource="{Binding Categories}"

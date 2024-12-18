@@ -18,7 +18,10 @@ namespace TriviaGame.ViewModel
 
         public string SelectedCategory
         {
-            get => selectedCategory;
+            get
+            {
+                return selectedCategory;
+            }
             set
             {
                 if (selectedCategory != value)
@@ -31,7 +34,10 @@ namespace TriviaGame.ViewModel
 
         public string SelectedDifficulty
         {
-            get => selectedDifficulty;
+            get
+            {
+                return selectedDifficulty;
+            }
             set
             {
                 if (selectedDifficulty != value)
@@ -44,7 +50,10 @@ namespace TriviaGame.ViewModel
 
         public string SelectedGameMode
         {
-            get => selectedGameMode;
+            get
+            {
+                return selectedGameMode;
+            }
             set
             {
                 if (selectedGameMode != value)
