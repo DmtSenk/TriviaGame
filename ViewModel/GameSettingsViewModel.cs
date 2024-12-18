@@ -77,8 +77,12 @@ namespace TriviaGame.ViewModel
             GameModes = new ObservableCollection<string>
             {
                 "Classic",
-                "Rapid",
-                "Survival"
+                "Race",
+                "Survival",
+                "Streak",
+                "Speed",
+                "Reverse",
+                "Elimination"
             };
 
             

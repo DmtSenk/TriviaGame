@@ -4,7 +4,7 @@ namespace TriviaGame;
 public partial class GamePageSettings : ContentPage
 {
     private GameSettingsViewModel viewModel;
-    public GamePageSettings()
+    public GamePageSettings(string gameMode, List<string> playerNames)
 	{
 		InitializeComponent();
         viewModel = new GameSettingsViewModel();
@@ -15,14 +15,13 @@ public partial class GamePageSettings : ContentPage
     {
         string category = viewModel.SelectedCategory;
         string difficulty = viewModel.SelectedDifficulty;
-        string gameMode = viewModel.SelectedGameMode;
+        
 
         
-        await DisplayAlert("Game Started",
-            $"Category: {category}\nDifficulty: {difficulty}\nGame Mode: {gameMode}","OK");
+        await DisplayAlert("Game Started",$"Category: {category}\nDifficulty: {difficulty}","OK");
 
         
-        // await Navigation.PushAsync(new GamePage(category, difficulty, gameMode));
+        //await Navigation.PushAsync(new (category, difficulty, gameMode));
 
     }
 }

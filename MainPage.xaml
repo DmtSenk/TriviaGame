@@ -7,31 +7,48 @@
         <ToolbarItem Text="Settings"
                      IconImageSource="{AppThemeBinding Light=settingslight.png, Dark=settingsdark.png}"
                      Order="Primary"
-                     Priority="0"
+                     Priority="1"
                      Clicked="ButtonSettings_Clicked"/>
+        <ToolbarItem Text="Info"
+                     Order="Primary"
+                     Priority="0"
+                     />
+        <ToolbarItem Text="Dashboard"
+                     Order="Primary"
+                     Priority="0"
+                     />
     </ContentPage.ToolbarItems>
-    <VerticalStackLayout>
-        <Label Text="Number of players" 
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="Number of players" 
                HorizontalOptions="Center"
                />
-        <Slider x:Name="AmountOfPLayersSlider"
+            <Slider x:Name="AmountOfPLayersSlider"
                 Minimum="1"
                 Maximum="4"
                 Value="1"
                 ValueChanged="AmountOfPLayersSlider_ValueChanged"
                 WidthRequest="150"
                 Margin="0,0,0,5"/>
-        <Label x:Name="AmOfPlayers"
+            <Label x:Name="AmOfPlayers"
                Text="1 Player"
                HorizontalOptions="Center"
                Margin="0,0,0,10"/>
-        <StackLayout x:Name="PlayersNames" 
+            <StackLayout x:Name="PlayersNames" 
                      HorizontalOptions="Center" 
                      Spacing="10" 
                      Margin="0,0,0,60"/>
-        <Button Text="Start"
+            <Picker x:Name="GameMode"
+                Title="Choose Game mode"
+                ItemsSource="{Binding GameModes}"
+                SelectedItem="{Binding SelectedGameMode}"
+                WidthRequest="150"
+                HorizontalOptions="Center"
+                Margin="0,0,0,5"/>
+            <Button Text="Start"
                 WidthRequest="100"
                 Clicked="ButtonStart_Clicked"
                 Margin="0,0,0,10"/>
-    </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

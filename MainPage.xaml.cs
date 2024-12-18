@@ -1,13 +1,17 @@
 ﻿using TriviaGame.Resources;
+using TriviaGame.ViewModel;
 
 namespace TriviaGame
 {
     public partial class MainPage : ContentPage
     {
+        private GameSettingsViewModel viewModel;
 
         public MainPage()
         {
             InitializeComponent();
+            viewModel = new GameSettingsViewModel();
+            BindingContext = viewModel;
             UpdatePlayerEntries(1);
         }
 
@@ -28,12 +32,30 @@ namespace TriviaGame
 
         private async void ButtonStart_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new GamePageSettings());
+            var playerNames = new List<string>();
+            foreach (var child in PlayersNames.Children)
+            {
+                if (child is Entry entry && !string.IsNullOrWhiteSpace(entry.Text))
+                {
+                    playerNames.Add(entry.Text);
+                }
+            }
+
+            if (playerNames.Count == 0)
+            {
+                await DisplayAlert("Error", "Please enter player name.", "OK");
+                return;
+            }
+
+            string gameMode = viewModel.SelectedGameMode;
+
+            await Navigation.PushAsync(new GamePageSettings(gameMode, playerNames));
         }
 
         private async void ButtonSettings_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SettingsPage());
         }
+
     }
 }
