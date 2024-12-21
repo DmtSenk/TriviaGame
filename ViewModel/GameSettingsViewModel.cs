@@ -4,17 +4,27 @@ using System.Runtime.CompilerServices;
 
 namespace TriviaGame.ViewModel
 {
+    public class PlayersSett
+    {
+        public string Name { get; set; }
+        public string SelectedCategory { get; set; }
+        public string SelectedDifficulty { get; set; }
+    }
     public class GameSettingsViewModel : INotifyPropertyChanged
     {
         private string selectedCategory;
         private string selectedDifficulty;
         private string selectedGameMode;
+        private double timerDuration;
+        private int numberOfRounds;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<string> Categories { get; set; }
         public ObservableCollection<string> Difficulties { get; set; }
         public ObservableCollection<string> GameModes { get; set; }
+        public ObservableCollection<PlayersSett> Players { get; set; }
+
 
         public string SelectedCategory
         {
@@ -63,7 +73,36 @@ namespace TriviaGame.ViewModel
                 }
             }
         }
-
+        public double TimerDuration
+        {
+            get
+            {
+                return timerDuration;
+            }
+            set
+            {
+                if(timerDuration != value)
+                {
+                    timerDuration = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        public int NumberOfRounds
+        {
+            get
+            {
+                return numberOfRounds;
+            }
+            set
+            {
+                if(numberOfRounds != value)
+                {
+                    numberOfRounds = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         public GameSettingsViewModel()
         {
             Categories = new ObservableCollection<string>
@@ -89,8 +128,6 @@ namespace TriviaGame.ViewModel
                 "Race",
                 "Survival",
                 "Streak",
-                "Speed",
-                "Reverse",
                 "Elimination"
             };
 
@@ -98,6 +135,11 @@ namespace TriviaGame.ViewModel
             SelectedCategory = Categories.FirstOrDefault("General Knowledge");
             SelectedDifficulty = Difficulties.FirstOrDefault("Easy");
             SelectedGameMode = GameModes.FirstOrDefault("Classic");
+
+            TimerDuration = Preferences.Get("TimerDuration", 30.0);
+            NumberOfRounds = Preferences.Get("NumberOfRounds", 5);
+
+            Players = new ObservableCollection<PlayersSett>();
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

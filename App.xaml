@@ -20,7 +20,6 @@
             </Style>
             <Style TargetType="Button">
                 <Setter Property="FontSize" Value="{DynamicResource DefaultFontSize}"/>
-                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
                 <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource VibrantOrange}, Dark={StaticResource BrightOrange}}"/>
                 <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}"/>
             </Style>
@@ -30,6 +29,10 @@
             </Style>
             <Style TargetType="Switch">
                 <Setter Property="OnColor"  Value="{AppThemeBinding Light={StaticResource BrightOrange}, Dark={StaticResource DarkSlateGray}}"/>
+            </Style>
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBlue}, Dark={StaticResource DarkBlue}}"/>
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}"/>
             </Style>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />

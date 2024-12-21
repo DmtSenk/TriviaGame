@@ -68,6 +68,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="GamePage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="GamePageSettings.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
