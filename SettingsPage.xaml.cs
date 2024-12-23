@@ -8,6 +8,8 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     private bool isDarkMode;
     private double timerDuration;
     private double fontSize;
+    private double numberOfRounds;
+    private double numberOfQuestions;
     public event PropertyChangedEventHandler PropertyChanged;
 
     public bool IsDarkMode
@@ -57,7 +59,39 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
             }
         }
     }
-
+    
+    public double NumberOfRounds
+    {
+        get
+        {
+            return numberOfRounds;
+        }
+        set
+        {
+            if (numberOfRounds != value)
+            {
+                numberOfRounds = value;
+                Preferences.Set("NumberOfRounds", value);
+                OnPropertyChanged();
+            }
+        }
+    }
+    public double NumberOfQuestions
+    {
+        get
+        {
+            return numberOfQuestions;
+        }
+        set
+        {
+            if(numberOfQuestions != value)
+            {
+                numberOfQuestions = value;
+                Preferences.Set("NumberOfQuestions", value);
+                OnPropertyChanged();
+            }
+        }
+    }
     public SettingsPage()
     {
         InitializeComponent();
@@ -65,7 +99,9 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         isDarkMode = Preferences.Get("IsDarkMode", false);
         timerDuration = Preferences.Get("TimerDuration", 30.0);
         fontSize = Preferences.Get("FontSize", 16.0);
-        
+        numberOfRounds = Preferences.Get("NumberOfRounds", 5.0);
+        numberOfQuestions = Preferences.Get("NumberOfQuestions", 5.0);
+
         BindingContext = this;
         
         SetTheme(IsDarkMode);
