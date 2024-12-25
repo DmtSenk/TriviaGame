@@ -15,8 +15,7 @@ namespace TriviaGame.ViewModel
         private string selectedCategory;
         private string selectedDifficulty;
         private string selectedGameMode;
-        private double timerDuration;
-        private int numberOfRounds;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -73,36 +72,7 @@ namespace TriviaGame.ViewModel
                 }
             }
         }
-        public double TimerDuration
-        {
-            get
-            {
-                return timerDuration;
-            }
-            set
-            {
-                if(timerDuration != value)
-                {
-                    timerDuration = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-        public int NumberOfRounds
-        {
-            get
-            {
-                return numberOfRounds;
-            }
-            set
-            {
-                if(numberOfRounds != value)
-                {
-                    numberOfRounds = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        
         public GameSettingsViewModel()
         {
             Categories = new ObservableCollection<string>
@@ -136,8 +106,6 @@ namespace TriviaGame.ViewModel
             SelectedDifficulty = Difficulties.FirstOrDefault("Easy");
             SelectedGameMode = GameModes.FirstOrDefault("Classic");
 
-            TimerDuration = Preferences.Get("TimerDuration", 30.0);
-            NumberOfRounds = Preferences.Get("NumberOfRounds", 5);
 
             Players = new ObservableCollection<PlayersSett>();
         }

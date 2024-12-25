@@ -10,6 +10,7 @@
                      Priority="1"
                      Clicked="ButtonSettings_Clicked"/>
         <ToolbarItem Text="Info"
+                     IconImageSource="{AppThemeBinding Light=infolight.png, Dark=infodark.png}"
                      Order="Primary"
                      Priority="0"/>
         <ToolbarItem Text="Dashboard"
@@ -35,8 +36,9 @@
                      HorizontalOptions="Center" 
                      Spacing="10" 
                      Margin="0,0,0,60"/>
+            <Label Text="Choose Game mode"
+                   HorizontalOptions="Center"/>
             <Picker x:Name="GameMode"
-                Title="Choose Game mode"
                 ItemsSource="{Binding GameModes}"
                 SelectedItem="{Binding SelectedGameMode}"
                 WidthRequest="150"

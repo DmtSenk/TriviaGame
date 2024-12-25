@@ -8,13 +8,11 @@
         <Label Text="Select Category"
                    HorizontalOptions="Start"/>
         <Picker x:Name="CategoryPicker"
-                    Title="Choose a Category"
                     ItemsSource="{Binding Categories}"
                     SelectedItem="{Binding SelectedCategory}"/>
         <Label Text="Select Difficulty"
                    HorizontalOptions="Start" />
         <Picker x:Name="DifficultyPicker"
-                    Title="Choose Difficulty"
                     ItemsSource="{Binding Difficulties}"
                     SelectedItem="{Binding SelectedDifficulty}"/>
         <Button Text="Start Game"
