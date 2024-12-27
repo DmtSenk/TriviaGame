@@ -3,19 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaGame.GamePageSettings"
              Title="GamePageSettings">
-
-    <VerticalStackLayout Padding="30" Spacing="20">
-        <Label Text="Select Category"
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+        
+        <Label Text="Round caregory and difficulty"
                    HorizontalOptions="Start"/>
-        <Picker x:Name="CategoryPicker"
-                    ItemsSource="{Binding Categories}"
-                    SelectedItem="{Binding SelectedCategory}"/>
-        <Label Text="Select Difficulty"
-                   HorizontalOptions="Start" />
-        <Picker x:Name="DifficultyPicker"
-                    ItemsSource="{Binding Difficulties}"
-                    SelectedItem="{Binding SelectedDifficulty}"/>
+        <StackLayout x:Name="RoundsStack" Spacing="15" />
+
         <Button Text="Start Game"
-                    Clicked="OnStartGameClicked" />
+                Clicked="OnStartGameClicked" />
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -81,8 +81,7 @@ namespace TriviaGame.ViewModel
                 "Film",
                 "Music",
                 "Video Games",
-                "History",
-                "Mythology"
+                "History"
             };
 
             Difficulties = new ObservableCollection<string>

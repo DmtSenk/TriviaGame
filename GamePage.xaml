@@ -6,9 +6,14 @@
     <VerticalStackLayout Padding="20" 
                          Spacing="10">
         <Label x:Name="RLabel"
-            HorizontalOptions="Center"/>
+               HorizontalOptions="Center"/>
         <Label x:Name="PlayerLabel" 
-            HorizontalOptions="Center"/>
+               HorizontalOptions="Center"/>
+        <Label x:Name="Timer"
+               HorizontalOptions="Center"/>
+        <HorizontalStackLayout x:Name="SurvivalLayout"
+                               HorizontalOptions="Center"
+                               Spacing="5"/>
         <Label x:Name="QLabel" 
             HorizontalOptions="Center" 
             TextColor="Black"/>

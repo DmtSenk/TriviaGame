@@ -1,5 +1,7 @@
 using TriviaGame.ViewModel;
 using TriviaGame.TriviaDB;
+using System.Text.Json;
+using System.Diagnostics;
 namespace TriviaGame;
 
 public partial class GamePageSettings : ContentPage
@@ -7,6 +9,10 @@ public partial class GamePageSettings : ContentPage
     private GameSettingsViewModel viewModel;
     private List<string> playersName;
     private string gameMode;
+    private List<(Picker catPicker, Picker diffPicker) > roundPickers = new List<(Picker, Picker)>();
+
+
+
     public GamePageSettings(string gameMode, List<string> playersName)
 	{
 		InitializeComponent();
@@ -14,42 +20,88 @@ public partial class GamePageSettings : ContentPage
         this.playersName = playersName;
         viewModel = new GameSettingsViewModel();
         BindingContext = viewModel;
+        CreateRoundPicker();
+    }
+
+    private void CreateRoundPicker()
+    {
+        int totalRounds = (int)Preferences.Get("NumberOfRounds", 5.0);
+
+        for (int i = 0; i < totalRounds; i++)
+        {
+            var stack = new VerticalStackLayout { Spacing = 5 };
+
+            var roundLabel = new Label
+            {
+                Text = $"Rounds {i+1}"
+            };
+            stack.Children.Add(roundLabel);
+
+            var categoryPicker = new Picker
+            {
+                Title = "Choose Category",
+                ItemsSource = viewModel.Categories
+            };
+
+            categoryPicker.SelectedItem = viewModel.SelectedCategory;
+            stack.Children.Add(categoryPicker);
+
+            var difficultyPicker = new Picker
+            {
+                Title = "Choose Difficulty",
+                ItemsSource = viewModel.Difficulties
+            };
+
+            difficultyPicker.SelectedItem = viewModel.SelectedDifficulty;
+            stack.Children.Add(difficultyPicker);
+
+            roundPickers.Add((categoryPicker, difficultyPicker));
+            RoundsStack.Children.Add(stack);
+        }
     }
 
     private async void OnStartGameClicked(object sender, EventArgs e)
     {
-        string category = viewModel.SelectedCategory;
-        string difficulty = viewModel.SelectedDifficulty;
-
-        int rounds = 6;
-        double timer = 60;
+        int numberOfROunds = (int)Preferences.Get("NumberOfRounds", 5.0);
+        double timer = Preferences.Get("TimerDuration", 30.0);
+        int questionsPerRound = (int)Preferences.Get("NumberOfQuestions", 5.0);
+        int numberOfPlayers = playersName.Count;
+        int totalRequiredQuestions = numberOfROunds * questionsPerRound * numberOfPlayers;
 
         switch (gameMode)
         {
-            case "Classic":
-            case "Survival":
-            case "Streak":
-            case "Elimination":
-                rounds = Preferences.Get("NumberOfRounds", 6);
-                timer = Preferences.Get("TimerDuration", 30.0);
-                break;
             case "Race":
-                rounds = Preferences.Get("NumberOfRounds", 6);
                 timer = 10.0;
-                break;
-            default:
-                rounds = Preferences.Get("NumberOfRounds", 6);
-                timer = Preferences.Get("TimerDuration", 30.0);
                 break;
         }
 
-        int caregoryId = ConvertCategoryToId(category);
-
+        var questions = new List<TriviaQuestion>();
         var trivia = new Trivia();
-        var questions = await trivia.GetQuestions(amount: rounds, categoryId: caregoryId, difficulty: difficulty);
-        
-        await Navigation.PushAsync(new GamePage(questions, rounds, timer, gameMode, playersName));
 
+        for (int roundIndex = 0; roundIndex < numberOfROunds; roundIndex++)
+        {
+            var (catPicker, diffPicker) = roundPickers[roundIndex];
+
+            string chosenCategory = catPicker.SelectedItem as string;
+            string chosenDifficulty = diffPicker.SelectedItem as string;
+
+            int catId = ConvertCategoryToId(chosenCategory);
+
+            var roundsQuest = await trivia.GetQuestions(
+                amount: questionsPerRound,
+                categoryId: catId,
+                difficulty: chosenDifficulty.ToLower());
+            questions.AddRange(roundsQuest);
+
+            await Task.Delay(500);
+        }
+
+        if (questions.Count < totalRequiredQuestions)
+        {
+            await DisplayAlert("No Questions", "No questions found.", "OK");
+            return;
+        }
+        await Navigation.PushAsync(new GamePage(questions, numberOfROunds, timer, gameMode, playersName));
     }
     private int ConvertCategoryToId(string categoryName)
     {

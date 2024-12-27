@@ -68,10 +68,11 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         }
         set
         {
-            if (numberOfRounds != value)
+            var newValue = Math.Round(value);
+            if (numberOfRounds != newValue)
             {
-                numberOfRounds = value;
-                Preferences.Set("NumberOfRounds", value);
+                numberOfRounds = newValue;
+                Preferences.Set("NumberOfRounds", newValue);
                 OnPropertyChanged();
             }
         }
@@ -84,10 +85,11 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         }
         set
         {
-            if(numberOfQuestions != value)
+            var newValue = Math.Round(value);
+            if (numberOfQuestions != newValue)
             {
-                numberOfQuestions = value;
-                Preferences.Set("NumberOfQuestions", value);
+                numberOfQuestions = newValue;
+                Preferences.Set("NumberOfQuestions", newValue);
                 OnPropertyChanged();
             }
         }
@@ -130,6 +132,8 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         Preferences.Set("IsDarkMode", IsDarkMode);
         Preferences.Set("TimerDuration", TimerDuration);
         Preferences.Set("FontSize", FontSize);
+        Preferences.Set("NumberOfRounds", NumberOfRounds);
+        Preferences.Set("NumberOfQuestions", NumberOfQuestions);
 
         Application.Current.UserAppTheme = IsDarkMode ? AppTheme.Dark : AppTheme.Light;
         Application.Current.Resources["DefaultFontSize"] = FontSize;

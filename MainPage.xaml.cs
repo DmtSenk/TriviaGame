@@ -57,5 +57,24 @@ namespace TriviaGame
             await Navigation.PushAsync(new SettingsPage());
         }
 
+        private async void Info_Clicked(object sender, EventArgs e)
+        {
+            await DisplayAlert("Info",
+        "Trivia Game\n",
+        "OK");
+        }
+
+        private async void Leaderboard_Clicked(object sender, EventArgs e)
+        {
+            string scores = Preferences.Get("DashboardScore", "");
+            if (string.IsNullOrEmpty(scores))
+            {
+                await DisplayAlert("Leaderboard", "No scores yet!", "OK");
+            }
+            else
+            {
+                await DisplayAlert("Leaderboard", scores, "OK");
+            }
+        }
     }
 }

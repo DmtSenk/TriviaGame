@@ -1,11 +1,11 @@
-﻿using System.Text.Json;
+﻿using System.Diagnostics;
+using System.Text.Json;
 
 namespace TriviaGame.TriviaDB
 {
     public class Trivia
     {
         private readonly HttpClient httpClient;
-        private List<TriviaQuestion> questionList = new List<TriviaQuestion>();
 
         public Trivia()
         {
@@ -14,10 +14,10 @@ namespace TriviaGame.TriviaDB
 
         public async Task<List<TriviaQuestion>> GetQuestions(int amount, int categoryId, string difficulty)
         {
-
             var url = $"https://opentdb.com/api.php?amount={amount}&category={categoryId}&difficulty={difficulty.ToLower()}&type=multiple";
-
+            
             var response = await httpClient.GetAsync(url);
+
             if (!response.IsSuccessStatusCode)
             {
                 return new List<TriviaQuestion>();
@@ -27,6 +27,7 @@ namespace TriviaGame.TriviaDB
 
             var triviaApiResponse = JsonSerializer.Deserialize<TriviaResponse>(content);
 
+            var questionList = new List<TriviaQuestion>();
             if (triviaApiResponse != null && triviaApiResponse.Results != null)
             {
                 questionList = triviaApiResponse.Results;
@@ -43,12 +44,12 @@ namespace TriviaGame.TriviaDB
 
     public class TriviaQuestion
     {
-        public string Category { get; set; }
-        public string Type { get; set; }
-        public string Difficulty { get; set; }
-        public string Question { get; set; }
-        public string CorrectAns { get; set; }
-        public List<string> IncorrectAns { get; set; }
+        public string category { get; set; }
+        public string type { get; set; }
+        public string difficulty { get; set; }
+        public string question { get; set; }
+        public string correct_answer { get; set; }
+        public List<string> incorrect_answers { get; set; }
     }
 }
 

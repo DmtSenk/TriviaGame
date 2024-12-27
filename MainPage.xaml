@@ -12,10 +12,12 @@
         <ToolbarItem Text="Info"
                      IconImageSource="{AppThemeBinding Light=infolight.png, Dark=infodark.png}"
                      Order="Primary"
-                     Priority="0"/>
-        <ToolbarItem Text="Dashboard"
+                     Priority="0"
+                     Clicked="Info_Clicked"/>
+        <ToolbarItem Text="Leaderboard"
                      Order="Primary"
-                     Priority="0"/>
+                     Priority="0"
+                     Clicked="Leaderboard_Clicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout>
