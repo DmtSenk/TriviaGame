@@ -11,8 +11,6 @@ public partial class GamePageSettings : ContentPage
     private string gameMode;
     private List<(Picker catPicker, Picker diffPicker) > roundPickers = new List<(Picker, Picker)>();
 
-
-
     public GamePageSettings(string gameMode, List<string> playersName)
 	{
 		InitializeComponent();
@@ -88,10 +86,14 @@ public partial class GamePageSettings : ContentPage
             int catId = ConvertCategoryToId(chosenCategory);
 
             var roundsQuest = await trivia.GetQuestions(
-                amount: questionsPerRound,
+                amount: totalRequiredQuestions,
                 categoryId: catId,
                 difficulty: chosenDifficulty.ToLower());
-            questions.AddRange(roundsQuest);
+
+            if (roundsQuest != null && roundsQuest.Any())
+            {
+                questions.AddRange(roundsQuest);
+            }
 
             await Task.Delay(500);
         }

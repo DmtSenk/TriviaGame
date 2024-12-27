@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using System.Net;
+﻿using System.Net;
 using System.Text.Json;
 using TriviaGame.TriviaDB;
 namespace TriviaGame;
@@ -21,9 +20,6 @@ public partial class GamePage : ContentPage
     private List<int> playerHearts;
     private CancellationTokenSource cts;
     private int[] playerStreaks;
-
-
-
 
     public GamePage(List<TriviaQuestion> questions, int rounds, double timer, string gameMode, List<string> playerNames)
 	{
@@ -47,9 +43,9 @@ public partial class GamePage : ContentPage
             playerHearts.Add(3);
         }
 
-        //Display();
+        Display();
         LoadQuestions();
-        //StartTimer();
+        StartTimer();
 	}
     
     private void Display()
@@ -142,7 +138,6 @@ public partial class GamePage : ContentPage
     {
         await DisplayAlert("No time", "Out of time", "Ok");
         WrongAnswer();
-        Next();
     }
     private async void OnAnswerClicked(string answer, string correctAns)
     {
@@ -154,6 +149,7 @@ public partial class GamePage : ContentPage
         var q = questions[currentQuestion];
         string diff = q.difficulty?.ToLower();
         int points = 5;
+
         switch (diff)
         {
             case "easy":
@@ -171,6 +167,7 @@ public partial class GamePage : ContentPage
         {
             await DisplayAlert("Correct", "Well done", "Ok");
             playerScores[currentPlayer]++;
+
             if(gameMode == "Streak")
             {
                 int bonus = 2 * playerStreaks[currentPlayer];
@@ -190,7 +187,33 @@ public partial class GamePage : ContentPage
             }
             WrongAnswer();
         }
-        Next();
+        
+        currentPlayer++;
+
+        if(playerNames.Count == 1 && currentQuestion >= questions.Count - 1)
+        {
+            EndGame();
+            return;
+        }
+        if(currentPlayer >= playerNames.Count)
+        {
+            currentPlayer = 0;
+            currentQuestion++;
+        }
+        if(currentQuestion > questions.Count)
+        {
+            currentPlayer++;
+            if(currentRound > totalRounds)
+            {
+                EndGame();
+                return;
+            }
+            currentQuestion = 0;
+        }
+
+        Display();
+        LoadQuestions();
+        StartTimer();
     }
     private void WrongAnswer()
     {
@@ -203,6 +226,17 @@ public partial class GamePage : ContentPage
                 playerNames.RemoveAt(currentPlayer);
                 playerScores.RemoveAt(currentPlayer);
                 playerHearts.RemoveAt(currentPlayer);
+
+                if(playerNames.Count == 0)
+                {
+                    EndGame();
+                    return;
+                }
+
+                if(currentRound >= playerNames.Count)
+                {
+                    currentPlayer = 0;
+                }
                 EndGame();
             }
         }else if(gameMode == "Elimination")
@@ -213,39 +247,19 @@ public partial class GamePage : ContentPage
             playerNames.RemoveAt(currentPlayer);
             playerScores.RemoveAt(currentPlayer);
 
-            if(playerNames.Count == 0)
+            if(playerNames.Count == 1)
             {
+                DisplayAlert("Game over", $"{playerNames[0]} wins!", "Ok");
                 EndGame();
                 return;
             }
-            currentPlayer--;
+            if (currentPlayer >= playerNames.Count)
+            {
+                currentPlayer = 0;
+            }
         }
     }
-    private async void Button_Clicked(object sender, EventArgs e)
-    {
-        Next();
-    }
-    private void Next()
-    {
-        currentPlayer++;
-        if(currentPlayer >= playerNames.Count)
-        {
-            currentPlayer = 0;
-            currentQuestion++;
-            currentRound++;
-        }
 
-        if(currentRound > totalRounds || currentQuestion >= questions.Count)
-        {
-            EndGame();
-        }
-        else
-        {
-            Display();
-            LoadQuestions();
-            StartTimer();
-        }
-    }
     private async void EndGame()
     {
         StopTimer();
@@ -256,18 +270,16 @@ public partial class GamePage : ContentPage
             scoreBoard.Add((playerNames[i], playerScores[i]));
         }
         scoreBoard.Sort((a,b) =>  b.Score.CompareTo(a.Score));
+
         string output = "";
         foreach(var entry in scoreBoard)
         {
             output += $"{entry.Name}: {entry.Score}";
         }
-        string saved = Preferences.Get("DashboardScore", "");
-        string dateAndTime = $"{DateTime.Now}";
-        string load = saved + "\n" + dateAndTime;
-        
-        Preferences.Set("DashboardScore", load);
 
-        await DisplayAlert("Game Finished", "Thank you for playing this game", "Ok");
+        Preferences.Set("Leaderboard", output);
+
+        await DisplayAlert("Game Finished", $"Thank you for playing this game\n{output}", "Ok");
         await Navigation.PopToRootAsync();
     }
 }

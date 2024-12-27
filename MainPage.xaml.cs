@@ -21,6 +21,7 @@ namespace TriviaGame
             AmOfPlayers.Text = playersCount + " Player" + (playersCount > 1 ? "s" : "");
             UpdatePlayerEntries(playersCount);
         }
+
         private void UpdatePlayerEntries(int playersCount)
         {
             PlayersNames.Children.Clear();
@@ -59,14 +60,12 @@ namespace TriviaGame
 
         private async void Info_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Info",
-        "Trivia Game\n",
-        "OK");
+            await DisplayAlert("Info","Trivia Game\nYou can change amount of rounds and questions in settings","OK");
         }
 
         private async void Leaderboard_Clicked(object sender, EventArgs e)
         {
-            string scores = Preferences.Get("DashboardScore", "");
+            string scores = Preferences.Get("Leaderboard", "");
             if (string.IsNullOrEmpty(scores))
             {
                 await DisplayAlert("Leaderboard", "No scores yet!", "OK");

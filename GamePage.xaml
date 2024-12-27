@@ -21,8 +21,5 @@
             x:Name="AnswersLayout" 
             Spacing="10" 
             HorizontalOptions="Center"/>
-        <Button Text="Next" 
-            Clicked="Button_Clicked" 
-            HorizontalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>
