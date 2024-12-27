@@ -10,18 +10,21 @@ public partial class GamePage : ContentPage
     private double timer;
     private string gameMode;
     private List<string> playerNames;
-
+    private int qPerRound;
+    
     private int currentRound = 1;
     private int currentQuestion = 0;
+    private int currentQuestionRound = 1;
     private int currentPlayer = 0;
     private int remainingTime;
+
     private bool timerON;
     private List<int> playerScores;
     private List<int> playerHearts;
     private CancellationTokenSource cts;
     private int[] playerStreaks;
 
-    public GamePage(List<TriviaQuestion> questions, int rounds, double timer, string gameMode, List<string> playerNames)
+    public GamePage(List<TriviaQuestion> questions, int rounds, double timer, string gameMode, List<string> playerNames, int questionsPerRound)
 	{
 		InitializeComponent();
         this.questions = questions;
@@ -29,6 +32,7 @@ public partial class GamePage : ContentPage
         this.timer = timer;
         this.gameMode = gameMode;
         this.playerNames = playerNames;
+        this.qPerRound = questionsPerRound;
 
         playerStreaks = new int[playerNames.Count];
         playerScores = new List<int>();
@@ -51,6 +55,7 @@ public partial class GamePage : ContentPage
     private void Display()
     {
         RLabel.Text = $"Round {currentRound} of {totalRounds}";
+        QTLabel.Text = $"Question {currentQuestionRound} of {qPerRound}";
         PlayerLabel.Text = $"Current Player: {playerNames[currentPlayer]}";
 
         SurvivalLayout.Children.Clear();
@@ -87,7 +92,6 @@ public partial class GamePage : ContentPage
         
         Answers = Answers.OrderBy(_ => Guid.NewGuid()).ToList();
         
-
         AnswersLayout.Children.Clear();
 
         foreach (var ans in Answers)
@@ -108,7 +112,7 @@ public partial class GamePage : ContentPage
         cts = new CancellationTokenSource();
         var token = cts.Token;
 
-        Device.StartTimer(TimeSpan.FromSeconds(2),() =>
+        Device.StartTimer(TimeSpan.FromSeconds(1),() =>
         {
             if (token.IsCancellationRequested)
             {
@@ -166,12 +170,13 @@ public partial class GamePage : ContentPage
         if (answer == correctAns)
         {
             await DisplayAlert("Correct", "Well done", "Ok");
-            playerScores[currentPlayer]++;
+            
 
             if(gameMode == "Streak")
             {
                 int bonus = 2 * playerStreaks[currentPlayer];
                 playerStreaks[currentPlayer]++;
+                playerScores[currentPlayer] += bonus;
             }
             else
             {
@@ -190,27 +195,35 @@ public partial class GamePage : ContentPage
         
         currentPlayer++;
 
-        if(playerNames.Count == 1 && currentQuestion >= questions.Count - 1)
+        if(playerNames.Count == 1 && currentQuestion >= (totalRounds * qPerRound) - 1)
         {
             EndGame();
             return;
         }
+
         if(currentPlayer >= playerNames.Count)
         {
             currentPlayer = 0;
+            currentQuestionRound++;
             currentQuestion++;
         }
-        if(currentQuestion > questions.Count)
+
+        if(currentQuestionRound > qPerRound)
         {
-            currentPlayer++;
+            currentRound++;
             if(currentRound > totalRounds)
             {
                 EndGame();
                 return;
             }
-            currentQuestion = 0;
+            currentQuestionRound = 1;
         }
 
+        if(currentQuestion >= questions.Count)
+        {
+            EndGame();
+            return;
+        }
         Display();
         LoadQuestions();
         StartTimer();
@@ -237,11 +250,11 @@ public partial class GamePage : ContentPage
                 {
                     currentPlayer = 0;
                 }
-                EndGame();
             }
         }else if(gameMode == "Elimination")
         {
             string eliminatedPplayer = playerNames[currentPlayer];
+
             DisplayAlert("Eliminated", $"{eliminatedPplayer} is out", "Ok");
 
             playerNames.RemoveAt(currentPlayer);
@@ -274,7 +287,7 @@ public partial class GamePage : ContentPage
         string output = "";
         foreach(var entry in scoreBoard)
         {
-            output += $"{entry.Name}: {entry.Score}";
+            output += $"\n{entry.Name}: {entry.Score}";
         }
 
         Preferences.Set("Leaderboard", output);

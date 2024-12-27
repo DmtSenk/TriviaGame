@@ -94,8 +94,6 @@ public partial class GamePageSettings : ContentPage
             {
                 questions.AddRange(roundsQuest);
             }
-
-            await Task.Delay(500);
         }
 
         if (questions.Count < totalRequiredQuestions)
@@ -103,7 +101,7 @@ public partial class GamePageSettings : ContentPage
             await DisplayAlert("No Questions", "No questions found.", "OK");
             return;
         }
-        await Navigation.PushAsync(new GamePage(questions, numberOfROunds, timer, gameMode, playersName));
+        await Navigation.PushAsync(new GamePage(questions, numberOfROunds, timer, gameMode, playersName, questionsPerRound));
     }
     private int ConvertCategoryToId(string categoryName)
     {

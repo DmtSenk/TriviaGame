@@ -7,6 +7,8 @@
                          Spacing="10">
         <Label x:Name="RLabel"
                HorizontalOptions="Center"/>
+        <Label x:Name="QTLabel"
+               HorizontalOptions="Center"/>
         <Label x:Name="PlayerLabel" 
                HorizontalOptions="Center"/>
         <Label x:Name="Timer"
@@ -15,8 +17,7 @@
                                HorizontalOptions="Center"
                                Spacing="5"/>
         <Label x:Name="QLabel" 
-            HorizontalOptions="Center" 
-            TextColor="Black"/>
+            HorizontalOptions="Center"/>
         <VerticalStackLayout 
             x:Name="AnswersLayout" 
             Spacing="10" 
