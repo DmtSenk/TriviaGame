@@ -5,11 +5,9 @@
              Title="GamePageSettings">
     <ScrollView>
         <VerticalStackLayout Padding="30" Spacing="20">
-        
-        <Label Text="Round caregory and difficulty"
-                   HorizontalOptions="Start"/>
+        <Label Text="Round category and difficulty"
+               HorizontalOptions="Start"/>
         <StackLayout x:Name="RoundsStack" Spacing="15" />
-
         <Button Text="Start Game"
                 Clicked="OnStartGameClicked" />
     </VerticalStackLayout>

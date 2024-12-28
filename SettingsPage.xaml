@@ -15,10 +15,10 @@
                     WidthRequest="150"/>
             <Label HorizontalOptions="Center">
                 <Label.Text>
-                    <Binding Path="TimerDuration" StringFormat="{}{0:F0} seconds"/>
+                    <Binding Path="TimerDuration" 
+                             StringFormat="{}{0:F0} seconds"/>
                 </Label.Text>
             </Label>
-
             <Label Text="Rounds"/>
             <Slider x:Name="RoundsSlider"
                     Minimum="1" Maximum="10"
@@ -27,7 +27,8 @@
             <Label HorizontalOptions="Center"
                    Margin="0,0,0,5">
                 <Label.Text>
-                    <Binding Path="NumberOfRounds" StringFormat="{}{0:F0}"/>
+                    <Binding Path="NumberOfRounds" 
+                             StringFormat="{}{0:F0}"/>
                 </Label.Text>
             </Label>
 

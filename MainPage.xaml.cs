@@ -6,7 +6,6 @@ namespace TriviaGame
     public partial class MainPage : ContentPage
     {
         private GameSettingsViewModel viewModel;
-
         public MainPage()
         {
             InitializeComponent();

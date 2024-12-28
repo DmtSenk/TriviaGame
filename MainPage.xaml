@@ -22,34 +22,34 @@
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Number of players" 
-               HorizontalOptions="Center"/>
+                   HorizontalOptions="Center"/>
             <Slider x:Name="AmountOfPLayersSlider"
-                Minimum="1"
-                Maximum="4"
-                Value="1"
-                ValueChanged="AmountOfPLayersSlider_ValueChanged"
-                WidthRequest="150"
-                Margin="0,0,0,5"/>
+                    Minimum="1"
+                    Maximum="4"
+                    Value="1"
+                    ValueChanged="AmountOfPLayersSlider_ValueChanged"
+                    WidthRequest="150"
+                    Margin="0,0,0,5"/>
             <Label x:Name="AmOfPlayers"
-               Text="1 Player"
-               HorizontalOptions="Center"
-               Margin="0,0,0,10"/>
+                   Text="1 Player"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,10"/>
             <StackLayout x:Name="PlayersNames" 
-                     HorizontalOptions="Center" 
-                     Spacing="10" 
-                     Margin="0,0,0,60"/>
+                         HorizontalOptions="Center" 
+                         Spacing="10" 
+                         Margin="0,0,0,60"/>
             <Label Text="Choose Game mode"
                    HorizontalOptions="Center"/>
             <Picker x:Name="GameMode"
-                ItemsSource="{Binding GameModes}"
-                SelectedItem="{Binding SelectedGameMode}"
-                WidthRequest="150"
-                HorizontalOptions="Center"
-                Margin="0,0,0,5"/>
+                    ItemsSource="{Binding GameModes}"
+                    SelectedItem="{Binding SelectedGameMode}"
+                    WidthRequest="150"
+                    HorizontalOptions="Center"
+                    Margin="0,0,0,5"/>
             <Button Text="Start"
-                WidthRequest="100"
-                Clicked="ButtonStart_Clicked"
-                Margin="0,0,0,10"/>
+                    WidthRequest="100"
+                    Clicked="ButtonStart_Clicked"
+                    Margin="0,0,0,10"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

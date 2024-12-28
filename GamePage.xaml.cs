@@ -89,7 +89,6 @@ public partial class GamePage : ContentPage
         var Answers = new List<string>(q.incorrect_answers);
         Answers.Add(q.correct_answer);
 
-        
         Answers = Answers.OrderBy(_ => Guid.NewGuid()).ToList();
         
         AnswersLayout.Children.Clear();
@@ -140,7 +139,7 @@ public partial class GamePage : ContentPage
 
     private async void TimeOut()
     {
-        await DisplayAlert("No time", "Out of time", "Ok");
+        await DisplayAlert("Timer", "Out of time", "Ok");
         WrongAnswer();
     }
     private async void OnAnswerClicked(string answer, string correctAns)
@@ -171,7 +170,6 @@ public partial class GamePage : ContentPage
         {
             await DisplayAlert("Correct", "Well done", "Ok");
             
-
             if(gameMode == "Streak")
             {
                 int bonus = 2 * playerStreaks[currentPlayer];

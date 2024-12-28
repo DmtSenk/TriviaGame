@@ -11,7 +11,6 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     private double numberOfRounds;
     private double numberOfQuestions;
     public event PropertyChangedEventHandler PropertyChanged;
-
     public bool IsDarkMode
     {
         get
@@ -59,7 +58,7 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
             }
         }
     }
-    
+
     public double NumberOfRounds
     {
         get

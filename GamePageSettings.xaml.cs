@@ -35,18 +35,26 @@ public partial class GamePageSettings : ContentPage
             };
             stack.Children.Add(roundLabel);
 
+            var catLabel = new Label
+            {
+                Text = "Choose Category"
+            };
+            stack.Children.Add(catLabel);
             var categoryPicker = new Picker
             {
-                Title = "Choose Category",
                 ItemsSource = viewModel.Categories
             };
 
             categoryPicker.SelectedItem = viewModel.SelectedCategory;
             stack.Children.Add(categoryPicker);
 
+            var difLabel = new Label
+            {
+                Text = "Choose Difficulty"
+            };
+            stack.Children.Add(difLabel);
             var difficultyPicker = new Picker
             {
-                Title = "Choose Difficulty",
                 ItemsSource = viewModel.Difficulties
             };
 
@@ -98,7 +106,7 @@ public partial class GamePageSettings : ContentPage
 
         if (questions.Count < totalRequiredQuestions)
         {
-            await DisplayAlert("No Questions", "No questions found.", "OK");
+            await DisplayAlert("Try again", "Please try again", "OK");
             return;
         }
         await Navigation.PushAsync(new GamePage(questions, numberOfROunds, timer, gameMode, playersName, questionsPerRound));

@@ -17,7 +17,7 @@
                                HorizontalOptions="Center"
                                Spacing="5"/>
         <Label x:Name="QLabel" 
-            HorizontalOptions="Center"/>
+               HorizontalOptions="Center"/>
         <VerticalStackLayout 
             x:Name="AnswersLayout" 
             Spacing="10" 
