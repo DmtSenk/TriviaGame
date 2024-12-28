@@ -59,7 +59,15 @@ namespace TriviaGame
 
         private async void Info_Clicked(object sender, EventArgs e)
         {
-            await DisplayAlert("Info","Trivia Game\nYou can change amount of rounds and questions in settings","OK");
+            await DisplayAlert("Info","Trivia Game\nCategories: General Knowledge, Film, Music, Video Games, History" +
+                "\nDifficulties: Easy, Medium, Hard" +
+                "\nGame Modes:" +
+                "\t\n- Classic: classic trivia game" +
+                "\t\n- Race: answer questions with fixed timer" +
+                "\t\n- Survival: three lives to answer questions" +
+                "\t\n- Steak: earn more points for streak" +
+                "\t\n- Elimination: one wrong answer and you eliminated" +
+                "\nIn settings you can change theme, round timer(except Race mode), amount of questions and rounds","OK");
         }
 
         private async void Leaderboard_Clicked(object sender, EventArgs e)

@@ -3,6 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaGame.GamePage"
              Title="GamePage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="CoinsUsers"
+                     Text="0"
+                     IconImageSource="coin.png"
+                     Order="Primary"
+                     Clicked="CoinsUsers_Clicked"/>
+    </ContentPage.ToolbarItems>
     <VerticalStackLayout Padding="20" 
                          Spacing="10">
         <Label x:Name="RLabel"

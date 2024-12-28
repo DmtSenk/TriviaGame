@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using System.Text.Json;
 using TriviaGame.TriviaDB;
+using Windows.ApplicationModel.VoiceCommands;
 namespace TriviaGame;
 
 public partial class GamePage : ContentPage
@@ -11,6 +12,7 @@ public partial class GamePage : ContentPage
     private string gameMode;
     private List<string> playerNames;
     private int qPerRound;
+    private List<int> playerCoins;
     
     private int currentRound = 1;
     private int currentQuestion = 0;
@@ -47,6 +49,12 @@ public partial class GamePage : ContentPage
             playerHearts.Add(3);
         }
 
+        playerCoins = new List<int>();
+        for(int i = 0;i < playerNames.Count; i++)
+        {
+            playerCoins.Add(0);
+        }
+
         Display();
         LoadQuestions();
         StartTimer();
@@ -72,6 +80,7 @@ public partial class GamePage : ContentPage
                 SurvivalLayout.Children.Add(heart);
             }
         }
+        UpdateCoins();
     }
 
     private void LoadQuestions()
@@ -180,6 +189,8 @@ public partial class GamePage : ContentPage
             {
                 playerScores[currentPlayer] += points;
             }
+            playerCoins[currentPlayer] += 2;
+            UpdateCoins();
         }
         else
         {
@@ -292,5 +303,54 @@ public partial class GamePage : ContentPage
 
         await DisplayAlert("Game Finished", $"Thank you for playing this game\n{output}", "Ok");
         await Navigation.PopToRootAsync();
+    }
+
+    private async void CoinsUsers_Clicked(object sender, EventArgs e)
+    {
+        string option1 = "Get 10 coins";
+        string option2 = "Buy 50/50 for 4 coins";
+        string option3 = "Buy correct answer for 6 coins";
+        string userCoins = await DisplayActionSheet("Shop", "Close",null,
+            option1,option2,option3);
+        switch (userCoins)
+        {
+            case "Get 10 coins":
+                playerCoins[currentPlayer] += 10;
+                UpdateCoins();
+                break;
+            case "Buy 50/50 for 4 coins":
+                if(playerCoins[currentPlayer] >= 4)
+                {
+                    playerCoins[currentPlayer] -= 4;
+                    UpdateCoins();
+                    Option2();
+                }
+                else
+                {
+                    await DisplayAlert("Not enought coins", $"You need 4 coins, your current amount is {playerCoins[currentPlayer]}", "Ok");
+                }
+                break;
+            case "Buy correct answer for 6 coins":
+                if (playerCoins[currentPlayer] >= 6)
+                {
+                    playerCoins[currentPlayer] -= 6;
+                    UpdateCoins();
+                    await DisplayAlert("Answer", $"The correct answer is: {questions[currentQuestion].correct_answer}", "OK");
+                }
+                else
+                {
+                    await DisplayAlert("Not enought coins", $"You need 6 coins, your current amount is {playerCoins[currentPlayer]}", "Ok");
+                }
+                break;
+        }
+    }
+    private void UpdateCoins()
+    {
+        CoinsUsers.Text = $"Coins: {playerCoins[currentPlayer]}";
+    }
+    private void Option2()
+    {
+        var allAnswers = AnswersLayout.Children.OfType<Button>().ToList();
+        
     }
 }
