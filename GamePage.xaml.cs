@@ -350,7 +350,35 @@ public partial class GamePage : ContentPage
     }
     private void Option2()
     {
-        var allAnswers = AnswersLayout.Children.OfType<Button>().ToList();
-        
+        List<Button> buttons = new List<Button>();
+        foreach(var  child in AnswersLayout.Children)
+        {
+           if(child is  Button button)
+            {
+                buttons.Add(button);
+            }
+        }
+        Button correctAns = null;
+        foreach(Button button in buttons)
+        {
+            if(button.Text == questions[currentQuestion].correct_answer)
+            {
+                correctAns = button;
+                break;
+            }
+        }
+
+        List<Button> wrongAns = new List<Button>();
+        foreach(Button button in buttons)
+        {
+            if(button != correctAns)
+            {
+                wrongAns.Add(button);
+            }
+        }
+        for(int i = 0; i < 2; i++)
+        {
+            AnswersLayout.Children.Remove(wrongAns[i]);
+        }
     }
 }
