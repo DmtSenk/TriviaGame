@@ -316,7 +316,7 @@ public partial class GamePage : ContentPage
         string option2 = "Buy 50/50 for 4 coins";
         string option3 = "Buy correct answer for 6 coins";
         string userCoins = await DisplayActionSheet("Shop", "Close",null,
-            option1,option2,option3);
+            $"Available coins: {playerCoins[currentPlayer]}",option1,option2,option3);
         switch (userCoins)
         {
             case "Get 10 coins":
