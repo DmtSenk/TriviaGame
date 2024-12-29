@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
 using TriviaGame.TriviaDB;
-using Windows.ApplicationModel.VoiceCommands;
 namespace TriviaGame;
 
 public partial class GamePage : ContentPage
@@ -132,6 +131,10 @@ public partial class GamePage : ContentPage
                 TimeOut();
                 return false;
             }
+            if(remainingTime == 10)
+            {
+                TriviaGame.Audio.timerSound();
+            }
             Timer.Text = $"Time: {remainingTime}";
             return true;
         });
@@ -151,6 +154,7 @@ public partial class GamePage : ContentPage
         await DisplayAlert("Timer", "Out of time", "Ok");
         WrongAnswer();
     }
+
     private async void OnAnswerClicked(string answer, string correctAns)
     {
         if (timerON)
@@ -237,6 +241,7 @@ public partial class GamePage : ContentPage
         LoadQuestions();
         StartTimer();
     }
+
     private void WrongAnswer()
     {
         if(gameMode == "Survival")
@@ -344,10 +349,12 @@ public partial class GamePage : ContentPage
                 break;
         }
     }
+
     private void UpdateCoins()
     {
         CoinsUsers.Text = $"Coins: {playerCoins[currentPlayer]}";
     }
+
     private void Option2()
     {
         List<Button> buttons = new List<Button>();

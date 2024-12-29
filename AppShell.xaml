@@ -6,7 +6,11 @@
     xmlns:local="clr-namespace:TriviaGame"
     Shell.FlyoutBehavior="Disabled"
     Title="TriviaGame">
-
+    <Shell.ToolbarItems>
+        <ToolbarItem x:Name="VolumeTool"
+                     IconImageSource="{AppThemeBinding Light=volumelight.png, Dark=volumedark.png}"
+                     Clicked="VolumeTool_Clicked"/>
+    </Shell.ToolbarItems>
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate local:MainPage}"

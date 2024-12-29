@@ -16,14 +16,12 @@ namespace TriviaGame.ViewModel
         private string selectedDifficulty;
         private string selectedGameMode;
 
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         public ObservableCollection<string> Categories { get; set; }
         public ObservableCollection<string> Difficulties { get; set; }
         public ObservableCollection<string> GameModes { get; set; }
         public ObservableCollection<PlayersSett> Players { get; set; }
-
 
         public string SelectedCategory
         {
@@ -100,11 +98,9 @@ namespace TriviaGame.ViewModel
                 "Elimination"
             };
 
-            
             SelectedCategory = Categories.FirstOrDefault("General Knowledge");
             SelectedDifficulty = Difficulties.FirstOrDefault("Easy");
             SelectedGameMode = GameModes.FirstOrDefault("Classic");
-
 
             Players = new ObservableCollection<PlayersSett>();
         }

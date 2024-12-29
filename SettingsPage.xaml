@@ -3,63 +3,67 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TriviaGame.Resources.SettingsPage"
              Title="SettingsPage">
-    <VerticalStackLayout>
-        <StackLayout Padding="30">
-            <Label Text="Theme"/>
-            <Switch x:Name="ThemeSwitch" 
-                    IsToggled="{Binding IsDarkMode}"/>
-            <Label Text="Timer Duration (seconds)"/>
-            <Slider x:Name="TimerSlider" 
-                    Minimum="30" Maximum="120" 
-                    Value="{Binding TimerDuration}"
-                    WidthRequest="150"/>
-            <Label HorizontalOptions="Center">
-                <Label.Text>
-                    <Binding Path="TimerDuration" 
-                             StringFormat="{}{0:F0} seconds"/>
-                </Label.Text>
-            </Label>
-            <Label Text="Rounds"/>
-            <Slider x:Name="RoundsSlider"
-                    Minimum="1" Maximum="10"
-                    Value="{Binding NumberOfRounds}"
-                    WidthRequest="150"/>
-            <Label HorizontalOptions="Center"
-                   Margin="0,0,0,5">
-                <Label.Text>
-                    <Binding Path="NumberOfRounds" 
-                             StringFormat="{}{0:F0}"/>
-                </Label.Text>
-            </Label>
-
-            <Label Text="Questions"/>
-            <Slider x:Name="QuestionsSlider"
-                    Minimum="1" Maximum="10"
-                    Value="{Binding NumberOfQuestions}"
-                    WidthRequest="150"/>
-            <Label HorizontalOptions="Center"
-                    Margin="0,0,0,5">
-                <Label.Text>
-                    <Binding Path="NumberOfQuestions" StringFormat="{}{0:F0}"/>
-                </Label.Text>
-            </Label>
-            
-            <Label Text="Font Size" />
-            <Slider x:Name="FontSizeSlider"
-                    Minimum="12" Maximum="30" 
-                    Value="{Binding FontSize}"
-                    VerticalOptions="Center"
-                    WidthRequest="150"/>
-            <Label HorizontalOptions="Center"
-                   Margin="0,0,0,5">
-                <Label.Text>
-                    <Binding Path="FontSize" StringFormat="{}{0:F0}"/>
-                </Label.Text>
-            </Label>
-            
-            <Button Text="Save Settings"
+    <ScrollView>
+        <VerticalStackLayout>
+            <StackLayout Padding="30">
+                <Label Text="Theme"/>
+                <Switch x:Name="ThemeSwitch" 
+                        IsToggled="{Binding IsDarkMode}"/>
+                <Label Text="Timer Duration (seconds)"/>
+                <Slider x:Name="TimerSlider" 
+                        Minimum="30" Maximum="120" 
+                        Value="{Binding TimerDuration}"
+                        WidthRequest="150"/>
+                <Label HorizontalOptions="Center">
+                    <Label.Text>
+                        <Binding Path="TimerDuration" 
+                                StringFormat="{}{0:F0} seconds"/>
+                    </Label.Text>
+                </Label>
+                <Label Text="Rounds"/>
+                <Slider x:Name="RoundsSlider"
+                        Minimum="1" Maximum="10"
+                        Value="{Binding NumberOfRounds}"
+                        WidthRequest="150"/>
+                <Label HorizontalOptions="Center"
+                       Margin="0,0,0,5">
+                    <Label.Text>
+                        <Binding Path="NumberOfRounds" 
+                                 StringFormat="{}{0:F0}"/>
+                    </Label.Text>
+                </Label>
+                <Label Text="Questions"/>
+                <Slider x:Name="QuestionsSlider"
+                        Minimum="1" Maximum="10"
+                        Value="{Binding NumberOfQuestions}"
+                        WidthRequest="150"/>
+                <Label HorizontalOptions="Center"
+                        Margin="0,0,0,5">
+                    <Label.Text>
+                        <Binding Path="NumberOfQuestions" StringFormat="{}{0:F0}"/>
+                    </Label.Text>
+                </Label>
+                <Label Text="Font Size" />
+                <Slider x:Name="FontSizeSlider"
+                        Minimum="12" Maximum="30" 
+                        Value="{Binding FontSize}"
+                        VerticalOptions="Center"
+                        WidthRequest="150"/>
+                <Label HorizontalOptions="Center"
+                       Margin="0,0,0,5">
+                    <Label.Text>
+                        <Binding Path="FontSize" StringFormat="{}{0:F0}"/>
+                    </Label.Text>
+                </Label>
+                <Label Text="Volume"/>
+                <Slider x:Name="VolumeSlider"
+                        Minimum="0" Maximum="1"
+                        Value="{Binding Volume}"
+                        WidthRequest="150"/>
+                <Button Text="Save Settings"
                     HorizontalOptions="Center" 
                     Clicked="OnSaveSettingsClicked"/>
         </StackLayout>
     </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

@@ -13,7 +13,7 @@ public partial class GamePageSettings : ContentPage
 
     public GamePageSettings(string gameMode, List<string> playersName)
 	{
-		InitializeComponent();
+        InitializeComponent();
         this.gameMode = gameMode;
         this.playersName = playersName;
         viewModel = new GameSettingsViewModel();
@@ -68,6 +68,9 @@ public partial class GamePageSettings : ContentPage
 
     private async void OnStartGameClicked(object sender, EventArgs e)
     {
+        Loading.IsVisible = true;
+        Loading.IsRunning = true;
+
         int numberOfROunds = (int)Preferences.Get("NumberOfRounds", 5.0);
         double timer = Preferences.Get("TimerDuration", 30.0);
         int questionsPerRound = (int)Preferences.Get("NumberOfQuestions", 5.0);
@@ -77,7 +80,7 @@ public partial class GamePageSettings : ContentPage
         switch (gameMode)
         {
             case "Race":
-                timer = 10.0;
+                timer = 11.0;
                 break;
         }
 
@@ -111,6 +114,7 @@ public partial class GamePageSettings : ContentPage
         }
         await Navigation.PushAsync(new GamePage(questions, numberOfROunds, timer, gameMode, playersName, questionsPerRound));
     }
+
     private int ConvertCategoryToId(string categoryName)
     {
         switch (categoryName)

@@ -60,14 +60,19 @@
 	  <None Remove="Resources\Images\coin.png" />
 	  <None Remove="Resources\Images\infodark.png" />
 	  <None Remove="Resources\Images\infolight.png" />
+	  <None Remove="Resources\Images\offdark.png" />
+	  <None Remove="Resources\Images\offlight.png" />
 	  <None Remove="Resources\Images\settingsdark.png" />
 	  <None Remove="Resources\Images\settingslight.png" />
+	  <None Remove="Resources\Images\volumedark.png" />
+	  <None Remove="Resources\Images\volumelight.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Plugin.Maui.Audio" Version="3.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

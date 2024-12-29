@@ -7,16 +7,16 @@
         <ToolbarItem Text="Settings"
                      IconImageSource="{AppThemeBinding Light=settingslight.png, Dark=settingsdark.png}"
                      Order="Primary"
-                     Priority="1"
+                     Priority="4"
                      Clicked="ButtonSettings_Clicked"/>
         <ToolbarItem Text="Info"
                      IconImageSource="{AppThemeBinding Light=infolight.png, Dark=infodark.png}"
                      Order="Primary"
-                     Priority="0"
+                     Priority="3"
                      Clicked="Info_Clicked"/>
-        <ToolbarItem Text="Leaderboard"
+        <ToolbarItem Text="Results"
                      Order="Primary"
-                     Priority="0"
+                     Priority="2"
                      Clicked="Leaderboard_Clicked"/>
     </ContentPage.ToolbarItems>
     <ScrollView>

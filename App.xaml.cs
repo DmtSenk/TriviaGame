@@ -12,7 +12,14 @@
             UserAppTheme = isDarkMode ? AppTheme.Dark : AppTheme.Light;
             Application.Current.Resources["DefaultFontSize"] = fontSize;
 
+            Start();
+
             MainPage = new AppShell();
+        }
+        public async void Start()
+        {
+            await TriviaGame.Audio.StartAudio();
+            TriviaGame.Audio.Play();
         }
     }
 }

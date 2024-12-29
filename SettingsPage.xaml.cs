@@ -10,7 +10,27 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
     private double fontSize;
     private double numberOfRounds;
     private double numberOfQuestions;
+    private double volume;
     public event PropertyChangedEventHandler PropertyChanged;
+
+    public double Volume
+    {
+        get
+        {
+            return Preferences.Get("Volume", 1.0);
+        }
+        set
+        {
+            if(volume != value)
+            {
+                volume = value;
+                Preferences.Set("Volume", value);
+                TriviaGame.Audio.Volume = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
     public bool IsDarkMode
     {
         get
@@ -76,6 +96,7 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
             }
         }
     }
+
     public double NumberOfQuestions
     {
         get
@@ -93,6 +114,7 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
             }
         }
     }
+
     public SettingsPage()
     {
         InitializeComponent();
@@ -102,11 +124,12 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         fontSize = Preferences.Get("FontSize", 16.0);
         numberOfRounds = Preferences.Get("NumberOfRounds", 5.0);
         numberOfQuestions = Preferences.Get("NumberOfQuestions", 5.0);
-
+        volume = Preferences.Get("Volume", 0.6);
         BindingContext = this;
         
         SetTheme(IsDarkMode);
         ApplyFontSize(FontSize);
+        VolumeSlider.Value = volume;
     }
 
     private void SetTheme(bool isDarkMode)
@@ -133,12 +156,14 @@ public partial class SettingsPage : ContentPage, INotifyPropertyChanged
         Preferences.Set("FontSize", FontSize);
         Preferences.Set("NumberOfRounds", NumberOfRounds);
         Preferences.Set("NumberOfQuestions", NumberOfQuestions);
+        Preferences.Set("Volume", Volume);
 
         Application.Current.UserAppTheme = IsDarkMode ? AppTheme.Dark : AppTheme.Light;
         Application.Current.Resources["DefaultFontSize"] = FontSize;
 
         await Navigation.PopAsync();
     }
+
     protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
